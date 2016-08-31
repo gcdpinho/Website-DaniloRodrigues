@@ -1,0 +1,22 @@
+{
+  "name": "RCAFrontend",
+  "description": "A tool for building websites",
+  "main": "",
+  "authors": [
+    "Tiago Salomon"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "1.11.0",
+    "gsap": "^1.18.5"
+  }
+}

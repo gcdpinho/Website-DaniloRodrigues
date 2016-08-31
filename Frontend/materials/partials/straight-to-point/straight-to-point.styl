@@ -1,0 +1,70 @@
+@import 'nib'
+
+.straight-to-point
+	width 100%
+	text-align center
+	padding 40px 0
+	
+	h2
+		margin 0 0 10px 0
+		font-family 'Arvo'
+		font-size 35px
+		text-transform lowercase
+		color #032d5f
+	
+	p
+		font-size 15px
+		color #7f7f7f
+		margin 0 0 45px 0
+	
+	.row
+		@media ( max-width: 768px )
+			margin-left 0
+			margin-right 0
+	
+	.col-md-3
+		height 200px
+		text-align center
+		cursor pointer
+		@media ( max-width: 768px )
+			height auto
+			padding 60px 0
+		p
+			position absolute
+			left 50%
+			top 50%
+			transform translate( -50%, -50% )
+			margin 0
+			color #032d5f
+			font-weight bold
+			transition 100ms ease-in-out
+			text-transform uppercase
+			font-size 20px
+			line-height 25px
+			min-width 210px
+			
+			@media ( max-width: 992px ) and ( min-width: 768px )
+				font-size 16px
+				
+		&:hover
+			p
+				color #fff
+				transition 100ms ease-in-out
+		
+	.color1
+		background #fe9b2e
+
+	.color2
+		background #f1d455
+	
+	.color3
+		background #f1c11e
+	
+	.color4
+		background #fbcd31
+	
+	.color5
+		background #ffb817
+	
+	.color6
+		background #e39601

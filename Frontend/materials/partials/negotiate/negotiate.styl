@@ -1,0 +1,363 @@
+
+
+.negotiate {
+	background-color: #FCB830;
+	padding: 45px 0;
+
+	.icon{
+		background: url('https://underfiles.com.br/static/images/sprite.fw.png') no-repeat 0 0 transparent;
+	}
+	
+	@media screen and (min-width: 768px) {
+		padding: 75px 0;
+	}
+
+	.container {
+		position: relative;
+	}
+
+	h2, p {
+		color: #012D5F;
+		text-align: center;
+	}
+
+	h2 {
+		font-size: 26px;
+		font-family: 'arvo';
+		font-weight: 400;
+		margin: 0 0 20px;
+		text-transform: lowercase;
+
+		@media screen and (min-width: 768px) {
+			font-size: 40px;
+			margin: 0 0 30px;
+		}
+	}
+
+	p {
+		font-weight: 600;
+		margin: 0px;
+		font-size: 14px;
+		cursor: pointer;
+		text-transform: uppercase;
+
+		@media screen and (min-width: 768px) {
+			font-size: 20px;
+		}
+	}
+
+	.close-forms {
+		display: none;
+		width: 22px;
+		height: 22px;
+		background-position: 3px -182px;
+		background-color: #858585;
+		text-indent: -9999px;
+		cursor: pointer;
+		margin: 0;
+		position: absolute;
+		top: 12px;
+		right: 12px;
+		z-index: 2;
+		// // @include prefixer(transition, all 0.3s ease-in-out, webkit moz ms o spec);
+
+		&:hover, &:focus {
+			background-color: lighten(#858585, 8);
+		}
+
+		@media screen and (min-width: 1024px) {
+			top: 20px;
+			right: 20px;
+		}
+	}
+
+	.list {
+		text-align: center;
+
+		li {
+			display: inline-block;
+			position: relative;
+			width: 112px;
+			margin: 5px 10px;
+
+			@media screen and (min-width: 768px) {
+				width: 182px;
+				margin: 10px 25px;
+			}
+
+			@media screen and (min-width: 1024px) {
+				margin: 10px 52px;
+			}
+		}
+
+		.hex {
+			position: relative;
+			width: 112px;
+			height: 54px;
+			margin: 27px 0 38px;
+			background-color: #FFF;
+			cursor: pointer;
+			transition: 300ms ease-in-out;
+
+			@media screen and (min-width: 768px) {
+				width: 182px;
+				height: 88px;
+				margin: 43px 0 60px;
+
+				&:hover,
+				&:focus {
+					background-color: #012D5F;
+
+					&:before {
+						border-bottom-color: #012D5F;
+					}
+
+					&:after {
+						border-top-color: #012D5F;
+					}
+
+					&.inner {
+						&:before {
+							border-bottom-color: #FCB830;
+						}
+
+						&:after {
+							border-top-color: #FCB830;
+						}
+					}
+				}
+			}
+
+			&.inner {
+				background-color: #FCB830;
+				transform: scale(0.96, 0.96);
+				z-index: 2;
+
+				&:before {
+					border-bottom-color: #FCB830;
+					top: -26px;
+
+					@media screen and (min-width: 768px) {
+						top: -42px;
+					}
+				}
+
+				&:after {
+					border-top-color: #FCB830;
+					bottom: -26px;
+
+					@media screen and (min-width: 768px) {
+						bottom: -42px;
+					}
+				}
+			}
+
+			&:before,
+			&:after {
+				content: "";
+				border-left: 56px solid transparent;
+				border-right: 56px solid transparent;
+				position: absolute;
+				left: 0;
+				transition: 300ms ease-in-out;
+
+				@media screen and (min-width: 768px) {
+					border-left-width: 91px;
+					border-right-width: 91px;
+				}
+			}
+
+			&:before {
+				top: -26px;
+				border-bottom: 26px solid #FFF;
+
+				@media screen and (min-width: 768px) {
+					top: -43px;
+					border-bottom-width: 43px;
+				}
+			}
+
+			&:after {
+				bottom: -26px;
+				border-top: 26px solid #FFF;
+
+				@media screen and (min-width: 768px) {
+					bottom: -43px;
+					border-top-width: 43px;
+				}
+			}
+
+			.icon-negotiate {
+				background: url(https://br0.understorage.com.br/v1/AUTH_static/images/negotiate.png) no-repeat 0 0 #FCB830;
+				width: 108px;
+				height: 54px;
+				position: absolute;
+				top: 1px;
+				left: 2px;
+				z-index: 3;
+				background-size: cover;
+
+				@media screen and (min-width: 768px) {
+					width: 174px;
+					height: 84px;
+					top: 2px;
+					left: 4px;
+					background-size: inherit;
+				}
+
+				&.phone {
+					background-position: 0 -52px;
+
+					@media screen and (min-width: 768px) {
+						background-position: 0 -84px;
+					}
+				}
+
+				&.mail {
+					background-position: 0 -103px;
+
+					@media screen and (min-width: 768px) {
+						background-position: 0 -168px;
+					}
+				}
+			}
+		}
+	}
+
+	.forms-negotiate {
+		background-color: #DADADA;
+		padding: 30px;
+		overflow: hidden;
+		display: none;
+		position: relative;
+		clear: both;
+		// @include prefixer(box-sizing, border-box, webkit moz ms o spec);
+
+		@media screen and (min-width: 1024px) {
+			background: url(https://br0.understorage.com.br/v1/AUTH_static/images/form-bg.jpg) no-repeat 810px top #DADADA;
+		}
+
+		@media screen and (min-width: 1300px) {
+			background-position: right top;
+		}
+
+		input,
+		textarea {
+			float: left;
+			height: 35px;
+			width: 100%;
+			margin: 0 0 10px 0;
+			border: 1px solid #B6B6B6;
+			font-family: 'Open Sans';
+			font-size: 16px;
+			color: #B6B6B6;
+			padding: 0 10px;
+			background-color: #FFF;
+			outline: none;
+			// @include prefixer(box-sizing, border-box, webkit moz ms o spec);
+
+			&.error {
+				border-color: #FF0000;
+			}
+
+			&:first-child {
+				margin-left: 0;
+			}
+
+			@media screen and (min-width: 768px) {
+				width: 32%;
+				margin: 0 0 0 2%;
+
+				&:first-child {
+					margin-left: 0;
+				}
+			}
+
+			@media screen and (min-width: 1024px) {
+				width: 27%;
+			}
+		}
+
+		textarea {
+			float: none;
+			height: 83px;
+			padding: 10px;
+			width: 100%;
+			margin: 0;
+			resize: none;
+
+			@media screen and (min-width: 768px) {
+				float: left;
+				width: 66%;
+				margin: 20px 0 0;
+			}
+
+			@media screen and (min-width: 1024px) {
+				width: 56%;
+			}
+		}
+
+		div {
+			margin-top: 10px;
+
+			p {
+				color: #7F7F7F;
+				font-size: 16px;
+				line-height: 120%;
+				font-weight: 400;
+				text-align: left;
+				text-transform: none;
+				margin: 5px 0;
+				cursor: default;
+
+				&.marge {
+					@media screen and (min-width: 768px) and (max-width: 1004px) {
+						margin: 0 0 -13px;
+					}
+				}
+			}
+
+			@media screen and (min-width: 768px) {
+				float: left;
+				margin: 20px 0 0 2%;
+				max-width: 32%;
+			}
+		}
+
+		button {
+			display: block;
+			width: 50%;
+			border: none;
+			margin-top: 10px;
+			cursor: pointer;
+			position: relative;
+			// // @include prefixer(transition, background-color 0.3s ease-in-out, webkit moz ms o spec);
+
+			@media screen and (min-width: 768px) {
+				width: 74px;
+				margin: 21px 0 0;
+			}
+
+			&.loading {
+				text-indent: -9999px;
+				background-color: lighten(#022E5F, 8) !important;
+			}
+
+			.loader {
+				display: none;
+				width: 24px;
+				height: 24px;
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				margin: -12px 0 0 -12px !important;
+				background: url(https://br0.understorage.com.br/v1/AUTH_static/images/loader.gif);
+			}
+		}
+
+		&.formulate {
+			// display: block;
+
+		}
+	}
+}

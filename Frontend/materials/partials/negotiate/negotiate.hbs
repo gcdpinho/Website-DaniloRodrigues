@@ -1,0 +1,102 @@
+<section class="negotiate">
+
+	<div class="container clearfix">
+
+		<h2>Vamos negociar?</h2>
+
+		<ul class="list clearfix">
+
+			<li data-negotiate="chat">
+
+				<div class="hover">
+
+					<div class="hex">
+
+						<span class="icon-negotiate btn-chat"></span>
+
+						<div class="hex inner">
+
+						</div>
+
+
+					</div>
+
+				</div>
+
+				<p>Chat</p>
+
+			</li>
+
+			<li data-negotiate="phone">
+
+				<div class="hover">
+
+					<div class="hex">
+
+						<span class="icon-negotiate phone"></span>
+
+						<div class="hex inner">
+
+						</div>
+
+					</div>
+
+				</div>
+
+				<p>Telefone</p>
+
+			</li>
+
+			<li data-negotiate="mail">
+
+				<div class="hover">
+
+					<div class="hex">
+
+						<span class="icon-negotiate mail"></span>
+
+						<div class="hex inner">
+
+						</div>
+
+					</div>
+
+				</div>
+
+				<p>E-mail</p>
+
+			</li>
+
+		</ul>
+
+		<form id="form-phone" method="POST" action="https://under.com.br/painel/cadastro/consultor" data-form="phone" class="forms-negotiate clearfix">
+
+			<input type="text" name="name" placeholder="Nome">
+			<input type="text" name="enterprise" placeholder="Empresa">
+			<input type="text" name="phone" placeholder="Telefone" class="phonemask" pattern="\([0-9]{2}\)[\s][0-9]{4}-[0-9]{4,5}">
+			<textarea name="message" placeholder="Mensagem"></textarea>
+			<div>
+				<p>A Under ligará para você.</p>
+				<button class="button midnight-blue">Ok <span class="loader"></span></button>
+			</div>
+			<span class="icon close-forms">Fechar</span>
+
+		</form>
+
+		<form id="form-mail" method="POST" action="https://under.com.br/painel/cadastro/consultor" data-form="mail" class="forms-negotiate clearfix">
+
+			<input type="text" name="name" placeholder="Nome">
+			<input type="text" name="email" placeholder="E-mail">
+			<input type="text" name="enterprise" placeholder="E-mail empresarial">
+			<textarea name="message" placeholder="Mensagem"></textarea>
+			<div>
+				<p class="marge">A Under enviará um e-mail para você.</p>
+				<button class="button midnight-blue">Ok <span class="loader"></span></button>
+			</div>
+			<span class="icon close-forms">Fechar</span>
+
+		</form>
+
+	</div>
+
+</section>
