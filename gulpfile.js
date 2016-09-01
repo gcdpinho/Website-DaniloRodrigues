@@ -4,9 +4,10 @@ var gulp = require('gulp'),
 	  concat = require('gulp-concat'),
 	  uglify = require('gulp-uglify'),
 	  stylus = require('gulp-stylus'),
-	  cleanCSS = require('gulp-clean-css'),
+	  minifyCSS = require('gulp-minify-css'),
 	  sourcemaps = require('gulp-sourcemaps'),
 	  nib = require('nib'),
+  	cmq = require('gulp-combine-media-queries'),
 		assemble = require('fabricator-assemble'),
 		del = require('del'),
 		spritesmith = require('gulp.spritesmith'),
@@ -15,21 +16,15 @@ var gulp = require('gulp'),
   	browserSync = require('browser-sync'),
   	reload = browserSync.reload,
   	runSequence = require('run-sequence'),
-  	stylint = require('gulp-stylint'),
-		watch = require('gulp-watch'),
-		mainBowerFiles = require('gulp-main-bower-files'),
-		order = require("gulp-order");
+		watch = require('gulp-chokidar')(gulp);
 
 var config = {
-	destDev:'../desenvolvimento/Content/',
-	dest: 'Deploy',
+	dest:'Deploy',
 	src: 'Frontend/',
-	jsons: 'Frontend/json/**/**/*.json',
-	bowerfiles: '../bower_components',
 	materials: 'materials/**/**/**/**/*.{hbs,md,yml}',
 	layouts: 'views/layouts/*.hbs',
 	layoutsIncludes: 'views/layouts/includes/*.hbs',
-	views: 'views/**/**/**/*.hbs',
+	views: 'views/**/*',
 	assemble: '**/*.{hbs,md,json,yml}',
 	ignoreLayouts: '/views/+(layouts)/**',
 	data:'data/**/*.{json,yml}',
@@ -39,15 +34,14 @@ var config = {
 	styles:'Frontend/assets/styl/**/*.styl',
 	componentsStyles:'Frontend/materials/components/**/**/**/*.styl',
 	partialsStyles:'Frontend/materials/partials/**/**/*.styl',
-  pagesScripts: 'Frontend/views/pages/**/**/*.js',
-  pagesStyles: 'Frontend/views/pages/**/**/*.styl',
-	plugins:'Frontend/assets/plugins/**/**//*.js',
+	plugins:'Frontend/assets/plugins/**/*.js',
 	fonts:'Frontend/assets/fonts/**/*',
 	images:'Frontend/assets/img/**/**/*',
 	imagesSrc: 'Frontend/assets/img/',
   sprites: 'Frontend/assets/img/sprite-src/**/*.png',
   spriteStylus: 'Frontend/assets/styl/',
-  sprites2x: 'Frontend/assets/img/sprite-src/**/*-2x.png'
+  sprites2x: 'Frontend/assets/img/sprite-src/**/*-2x.png',
+  guideAssets: 'Frontend/assets/guide/**/*'
 };
 
 gulp.task('clean', function () {
@@ -61,7 +55,7 @@ gulp.task('assemble', function (done) {
     layoutIncludes: config.src + config.layoutsIncludes,
     views: [config.src + config.views, '!' + config.src + config.ignoreLayouts],
     materials: config.src + config.materials,
-    data: [config.src + config.data, config.src + 'materials/components/**/**/**/*.{json,yml}', config.src + 'views/pages/**/**/*.{json,yml}'],
+    data: [config.src + config.data, config.src + 'materials/components/**/**/**/*.{json,yml}'],
     docs: config.src + config.docs,
     keys: {
         materials: 'materials',
@@ -109,165 +103,141 @@ gulp.task('assemble', function (done) {
 gulp.task('plugins', function() {
   return gulp.src([config.plugins])
   .pipe(sourcemaps.init())
-  .pipe(order(['/bower','/custom']))
   .pipe(concat('plugins.min.js'))
   .pipe(sourcemaps.write('../sourcemaps'))
-  .pipe(gulp.dest(config.dest + '/pages/Content/js'))
-  .pipe(gulp.dest(config.destDev + '/js'));
+  .pipe(gulp.dest(config.dest + '/pages/Content/js'));
 });
 
 gulp.task('scripts', function() {
-  return gulp.src([config.scripts, config.componentsScripts, config.pagesScripts])
+  return gulp.src([config.scripts, config.componentsScripts])
   .pipe(sourcemaps.init())
   .pipe(jshint())
+  .pipe(jshint.reporter('default'))
   .pipe(concat('app.min.js'))
   .pipe(sourcemaps.write('../sourcemaps'))
-  .pipe(gulp.dest(config.dest + '/pages/Content/js'))
-  .pipe(gulp.dest(config.destDev + '/js'));
+  .pipe(gulp.dest(config.dest + '/pages/Content/js'));
 });
 
-gulp.task('stylus-lint', function () {
-  return gulp.src([config.styles,'!Frontend/assets/styl/sprite.styl','!Frontend/assets/styl/2-fonts.styl','!Frontend/assets/styl/0-boilerplate.styl','!Frontend/assets/styl/1-bootstrap.styl', config.componentsStyles, config.partialsStyles, config.pagesStyles])
-	.pipe(stylint({
-	      rules: {
-					"blocks": false,
-					"brackets": {
-						"expected": "never",
-						"error":true
-					},
-					"colors":  false,
-					"colons": {
-						"expected": "never",
-						"error":true
-					},
-					"commaSpace": "always",
-					"commentSpace": "always",
-					"cssLiteral": "never",
-					"depthLimit": false,
-					"duplicates": {
-						"expected": true,
-						"error":true
-					},
-					"efficient": {
-						"expected": "always",
-						"error":true
-					},
-					"globalDupe": true,
-					"indentPref": false,
-					"leadingZero": "never",
-					"maxErrors": false,
-					"maxWarnings": false,
-					"mixed": false,
-					"namingConvention": "lowercase-dash",
-					"namingConventionStrict": true,
-					"none": {
-						"expected": "never",
-						"error":true
-					},
-					"noImportant": {
-						"expected": true,
-						"error":true
-					},
-					"parenSpace": "always",
-					"placeholders": "always",
-					"prefixVarsWithDollar": "always",
-					"quotePref": "single",
-					"semicolons": {
-						"expected": "never",
-						"error":true
-					},
-					"sortOrder": false,
-					"stackedProperties": "never",
-					"trailingWhitespace": false,
-					"universal": false,
-					"valid": {
-						"expected": true,
-						"error":true
-					},
-					"zeroUnits": {
-						"expected": "never",
-						"error":true
-					},
-					"zIndexNormalize": false
-	      },
-        reporter: 'stylint-stylish',
-        reporterOptions: {
-          verbose: true
-        }
-    	}
-      ))
-  .pipe(stylint.reporter());
-});
-
-gulp.task('styles',['stylus-lint'], function () {
-  return gulp.src([config.styles, config.componentsStyles, config.partialsStyles, config.pagesStyles])
+gulp.task('styles', function () {
+  return gulp.src([config.styles, config.componentsStyles, config.partialsStyles])
   .pipe(sourcemaps.init())
   .pipe(stylus({use: [nib()]}))
   .pipe(concat('style.min.css'))
   .pipe(sourcemaps.write('../sourcemaps'))
-  .pipe(gulp.dest(config.dest + '/pages/Content/css'))
-  .pipe(gulp.dest(config.destDev + '/css'))
-  .pipe(browserSync.stream({match: "**/*.css"}));
+  .pipe(gulp.dest(config.dest + '/pages/Content/css'));
+});
+
+gulp.task('components-scripts', function() {
+  return gulp.src([config.componentsScripts])
+  .pipe(sourcemaps.init())
+  .pipe(jshint())
+  .pipe(jshint.reporter('default'))
+  .pipe(concat('components.min.js'))
+  .pipe(uglify())
+  .pipe(sourcemaps.write('../sourcemaps'))
+  .pipe(gulp.dest(config.dest + '/guide/assets/scripts'));
+});
+
+gulp.task('components-styles', function () {
+  return gulp.src([config.componentsStyles])
+  .pipe(sourcemaps.init())
+  .pipe(stylus({use: [nib()]}))
+  .pipe(concat('components.min.css'))
+  .pipe(minifyCSS({keepBreaks:false}))
+  .pipe(sourcemaps.write('../sourcemaps'))
+  .pipe(gulp.dest(config.dest + '/guide/assets/styles'));
 });
 
 gulp.task('plugins-build', function() {
   return gulp.src([config.plugins])
   .pipe(sourcemaps.init())
-  .pipe(order(['/bower','/custom']))
   .pipe(concat('plugins.min.js'))
-  .pipe(uglify())
+   .pipe(uglify())
   .pipe(sourcemaps.write('../sourcemaps'))
-  .pipe(gulp.dest(config.dest + '/pages/Content/js'))
-  .pipe(gulp.dest(config.destDev + '/js'));
+  .pipe(gulp.dest(config.dest + '/pages/Content/js'));
 });
 
 gulp.task('scripts-build', function() {
-  return gulp.src([config.scripts, config.componentsScripts, config.pagesScripts])
+  return gulp.src([config.scripts, config.componentsScripts])
   .pipe(sourcemaps.init())
   .pipe(jshint())
+  .pipe(jshint.reporter('default'))
   .pipe(concat('app.min.js'))
   .pipe(uglify())
   .pipe(sourcemaps.write('../sourcemaps'))
-  .pipe(gulp.dest(config.dest + '/pages/Content/js'))
-  .pipe(gulp.dest(config.destDev + '/js'));
+  .pipe(gulp.dest(config.dest + '/pages/Content/js'));
 });
 
 gulp.task('styles-build', function () {
-  return gulp.src([config.styles, config.componentsStyles, config.partialsStyles, config.pagesStyles])
+  return gulp.src([config.styles, config.componentsStyles, config.partialsStyles])
   .pipe(sourcemaps.init())
   .pipe(stylus({use: [nib()]}))
   .pipe(concat('style.min.css'))
-  .pipe(cleanCSS({keepBreaks:false, compatibility: 'ie8'}))
+  .pipe(minifyCSS({keepBreaks:false}))
   .pipe(sourcemaps.write('../sourcemaps'))
-  .pipe(gulp.dest(config.dest + '/pages/Content/css'))
-  .pipe(gulp.dest(config.destDev + '/css'))
-  .pipe(browserSync.stream({match: "**/*.css"}));
+  .pipe(gulp.dest(config.dest + '/pages/Content/css'));
+});
+
+
+
+// server
+gulp.task('serve', function () {
+
+	browserSync({
+		server: {
+			baseDir: config.dest,
+			directory: true
+		},
+		notify: true,
+		logPrefix: 'RCA Frontend'
+	});
+
+	gulp.task('assemble:watch', ['assemble'], reload);
+	watch(config.assemble, 'assemble:watch');
+
+	gulp.task('styles:watch', ['styles','components-styles'], reload);
+	watch([config.styles, config.componentsStyles, config.partialsStyles], 'styles:watch');
+
+	gulp.task('scripts:watch', ['scripts','components-scripts'], reload);
+	watch([config.scripts, config.componentsScripts], 'scripts:watch');
+
+	gulp.task('plugins:watch', ['plugins'], reload);
+	watch(config.plugins, 'plugins:watch');
+
+	gulp.task('images:watch', ['imgs'], reload);
+	watch(config.images, 'images:watch');
+
+	gulp.task('sprites:watch', ['sprite'], reload);
+	watch(config.sprites, 'sprites:watch');
+
+	gulp.task('fonts:watch', ['fonts'], reload);
+	watch(config.fonts, 'fonts:watch');
+
+	gulp.task('styles-pages:watch', ['styles-pages'], reload);
+	watch([config.src + 'assets/styl-pages/*.styl'], 'styles-pages:watch');
+
 });
 
 gulp.task('modernizr', function() {
   gulp.src(config.scripts)
     .pipe(modernizr())
-    .pipe(gulp.dest(config.dest + '/pages/Content/js'))
-    .pipe(gulp.dest(config.destDev + '/js'));
+    .pipe(gulp.dest(config.dest + '/pages/Content/js'));
 });
 
 gulp.task('fonts', function() {
  return gulp.src(config.fonts)
-  .pipe(gulp.dest(config.dest + '/pages/Content/fonts'))
-  .pipe(gulp.dest(config.destDev + '/fonts'));
+  .pipe(gulp.dest(config.dest + '/pages/Content/fonts'));
 });
 
 gulp.task('imgs', function() {
   return gulp.src([config.images, '!' + config.sprites])
-  .pipe(gulp.dest(config.dest + '/pages/Content/img'))
-  .pipe(gulp.dest(config.destDev + '/img'));
+  .pipe(gulp.dest(config.dest + '/pages/Content/img'));
 });
 
 gulp.task('imgs-build', function() {
   return gulp.src([config.images, '!' + config.sprites])
   .pipe(imagemin({ optimizationLevel: 7, progressive: true, interlaced: true }))
-  .pipe(gulp.dest(config.dest + '/pages/Content/img'))
-  .pipe(gulp.dest(config.destDev + '/img'));
+  .pipe(gulp.dest(config.dest + '/pages/Content/img'));
 });
 
 gulp.task('sprite', function () {
@@ -283,76 +253,10 @@ gulp.task('sprite', function () {
   .pipe(gulp.dest(config.spriteStylus));
 });
 
-gulp.task('bower-files', function() {
-  return gulp.src('./bower.json')
-      .pipe(mainBowerFiles())
-      .pipe(gulp.dest(config.src + '/assets/plugins/bower'));
-});
 
-gulp.task('copy-jsons', function() {
-  return gulp.src(config.jsons)
-      .pipe(gulp.dest(config.dest + '/pages/Content/json'));
-});
-
-// server
-gulp.task('serve', function () {
-
-	browserSync({
-		server: {
-			baseDir: config.dest,
-			directory: true
-		},
-		notify: true,
-		logPrefix: 'RCA Frontend'
-	});
-
-	watch(config.assemble, function(){
-		runSequence(['assemble'], function () {
-			reload();
-		});
-	});
-	watch([config.styles, config.componentsStyles, config.partialsStyles, config.pagesStyles], function(){
-		runSequence(['styles']);
-	});
-
-	watch([config.scripts, config.componentsScripts, config.pagesScripts], function(){
-		runSequence(['scripts'], function () {
-			reload();
-		});
-	});
-
-	watch(config.bowerfiles, function(){
-		runSequence(['bower-files']);
-	});
-
-	watch(config.plugins, function(){
-		runSequence(['plugins'], function () {
-			reload();
-		});
-	});
-
-	watch(config.images, function(){
-		runSequence(['imgs'], function () {
-			reload();
-		});
-	});
-
-	watch(config.sprites, function(){
-		runSequence(['sprites'], function () {
-			reload();
-		});
-	});
-	watch(config.fonts, function(){
-		runSequence(['fonts'], function () {
-			reload();
-		});
-	});
-	watch(config.jsons, function(){
-		runSequence(['copy-jsons'], function () {
-			reload();
-		});
-	});
-
+gulp.task('copy-guide-assets', function() {
+ return gulp.src(config.guideAssets)
+  .pipe(gulp.dest(config.dest + '/guide/assets/'));
 });
 
 // default build task
@@ -362,19 +266,20 @@ gulp.task('default', ['clean'], function () {
 	var tasks = [
 		'modernizr',
 		'assemble',
-		'scripts',
 		'styles',
-		'bower-files',
+		'scripts',
 		'plugins',
+		'imgs',
 		'fonts',
 		'sprite',
-		'imgs',
-		'copy-jsons'
+		'copy-guide-assets',
+		'components-styles',
+		'components-scripts',
 	];
 
 	// run build
 	runSequence(tasks, function () {
-		gulp.start('serve');
+			gulp.start('serve');
 	});
 
 });
@@ -384,18 +289,16 @@ gulp.task('build', function(){
 	var tasks = [
 		'modernizr',
 		'assemble',
-		'scripts-build',
-		'bower-files',
-		'plugins-build',
 		'styles-build',
-		'fonts',
-		'sprite',
+		'scripts-build',
+		'plugins-build',
 		'imgs-build',
-		'copy-jsons'
+		'fonts',
+		'sprite'
 	];
 
 	// run build
 	runSequence(tasks, function () {
-		gulp.start('serve');
+			console.info('Projeto compilado com sucesso.');
 	});
 });

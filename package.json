@@ -8,7 +8,7 @@
   "scripts": {
     "gulp": "gulp",
     "prestart": "npm install",
-    "postinstall": "bower install",
+    "build": "npm install && gulp",
     "start": "gulp --dev",
     "test": "npm run build"
   },
@@ -23,26 +23,27 @@
     "npm": ">=2.0.0"
   },
   "devDependencies": {
-    "browser-sync": "^2.13.0",
+    "browser-sync": "^2.9.1",
     "del": "^2.0.1",
-    "fabricator-assemble": "^1.1.12",
-    "gulp": "^3.9.0",
-    "gulp-clean-css": "^2.0.3",
+    "fabricator-assemble": "^1.1.9",
+    "gulp": "^3.9.1",
+    "gulp-chokidar": "0.0.5",
+    "gulp-combine-media-queries": "^0.2.0",
     "gulp-concat": "^2.6.0",
     "gulp-imagemin": "^2.3.0",
     "gulp-jshint": "^1.11.2",
-    "gulp-main-bower-files": "^1.5.2",
+    "gulp-minify-css": "^1.2.1",
     "gulp-modernizr": "0.0.0",
-    "gulp-order": "^1.1.1",
     "gulp-rename": "^1.2.2",
     "gulp-sourcemaps": "^1.6.0",
-    "gulp-stylint": "^3.0.0",
     "gulp-stylus": "^2.1.0",
     "gulp-uglify": "^1.4.1",
-    "gulp-watch": "^4.3.8",
     "gulp.spritesmith": "^4.1.1",
     "nib": "^1.1.0",
-    "run-sequence": "^1.1.2",
-    "stylint-stylish": "^1.2.0"
+    "run-sequence": "^1.1.2"
+  },
+  "dependencies": {
+    "clipboard": "^1.5.9",
+    "handlebars": "^4.0.5"
   }
 }

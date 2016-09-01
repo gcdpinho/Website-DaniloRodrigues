@@ -1,0 +1,325 @@
+@import 'nib'
+@media screen and (max-width: 600px)
+	h2.media-modal,
+	h3.media-modal
+		font-size 1em
+	p.media-modal
+		font-size 0.55em
+	.img-vitoria
+		width 41% !important
+	.img-derrota
+		width 67% !important
+	.encontrados
+		margin-bottom 9% !important
+		
+@media screen and (min-width: 700px)
+	.container-modal
+		padding 17% !important
+		
+@media screen and (min-width: 1024px)
+	.desistir-media
+		padding 17em !important
+	p.media-modal
+		font-size 0.8125em /* 13/16 */
+		margin-top 20px
+	h2.media-modal
+		font-size 2em 
+		margin-top 5px
+	h3.media-modal
+		font-size 2em
+	.img-vitoria
+		width 50% !important
+	.img-derrota
+		width 87% !important
+		
+@media screen and (min-width: 1200px)
+	.modal
+		padding 1% 28% !important
+	.desistir-media
+		padding 15em 26em !important
+	p.media-modal
+		font-size 1em /* 13/16 */
+	h2.media-modal
+		font-size 2.5em 
+		margin-top -24px
+	h3.media-modal
+		font-size 2em
+		margin-top 10px
+	.img-vitoria
+		width 52% !important
+	.img-derrota
+		width 95% !important
+	.ajuda.media-modal
+		margin-top 20px !important
+	.volta.media-modal
+		margin-top 20px !important
+		
+html
+	overflow hidden
+	cursor default
+
+.full-width
+	width 100% !important
+.mt2
+	margin-top 2px
+.mt5
+	margin-top 5px
+.mt10
+	margin-top 10px
+.mt13
+	margin-top 13px
+.mt15
+	margin-top 15px
+.mt18
+	margin-top 18px
+.mt20
+	margin-top 20px
+.mt30
+	margin-top 30px
+.mt60
+	margin-top 60px
+.mt11
+	margin-top 11%
+.mt4pc
+	margin-top 4%
+.mt3em
+	margin-top 5%
+.mt-3
+	margin-top -3px
+.mt-4
+	margin-top -4px
+.mt-20
+	margin-top -1.3em
+.mt-12pc
+	margin-top -12%
+.mt13pc
+	margin-top 13%
+.mt10pc
+	margin-top 10%
+.mt14pc
+	margin-top 14%
+.mt4em
+	margin-top 4em
+.ml2
+	margin-left 2%
+.ml-19
+	margin-left -1.1875em /* 19/16 */
+.ml30pc
+	margin-left 30.333333%
+.mb0
+	margin-bottom 0
+.mb5
+	margin-bottom 5px
+.mb1em
+	margin-bottom 1em
+.mb1-5pc
+	margin-bottom 1.5% !important
+.pd14
+	padding 14%
+.pd1
+	padding 0.1em 0
+.pl2
+	padding-left 2px !important
+.pr2
+	padding-right 2px !important
+.pt13pc
+	padding-top 13%
+.pt5pc
+	padding-top 5%
+.fs9
+	font-size 0.5625em /* 9/16 */
+
+.fs10
+	font-size 0.625em /* 10/16 */
+.fs11
+	font-size 0.6875em /* 11/16 */
+.fs14
+	font-size 0.875em /* 14/16 */
+.fs16
+	font-size 1em
+
+.fs18
+	font-size 1.125em /* 18/16 */
+.fs20
+	font-size 1.25em /* 20/16 */
+.fs1-5
+	font-size 1.5em
+.fs24
+	font-size 1.5em /* 24/16 */
+.fs30
+	font-size 1.875em /* 30/16 */
+.wt60
+	width 60% !important
+.wt95
+	width 95% !important
+.wt110
+	width 110%
+
+.left74
+	left 74%
+
+.bottom15
+	bottom 15px
+
+.no-padding
+	padding 0
+.no-padding-left
+	padding-left 0
+.no-padding-right
+	padding-right 0
+.godzilla
+	font-family godzilla
+
+
+.roboto-black
+	font-family roboto_black
+
+.roboto-regular
+	font-family roboto
+
+.square-config
+	width 10em
+	height 8em
+	padding 0.3em
+	border-radius 0em 1em 0em 0em
+	background-color #47515b
+	display inline-block
+	margin-bottom -0.2em
+	display none
+	//position fixed
+.conteudo-menu
+	position fixed
+	bottom 0
+	left 0
+	margin-left 1%
+
+.display-table
+	display table !important
+.ht100
+	height 100%
+.wt128
+	width 8em /* 128/16 */
+.wt100
+	width 100%
+//colors
+.white
+	color #fff !important
+
+.marrom
+	color #5d3c17 !important
+
+.vinho
+	color #7b0d0d !important
+
+.verde-escuro
+	color #164111 !important
+
+.cinza-escuro
+	color #575757 !important
+.azul-trans
+	color: #549cb9 !important
+
+.bg-azul
+	background-color #3d616f !important
+.bg-vermelho
+	background-color #e84c3d !important
+.modal
+	background-color rgba(0, 0, 0, 0.8) !important
+	//display none
+	opacity 1 !important
+	display table
+	width 100%
+	height 100%
+	padding 2% 25%
+.ftnormal
+	font-weight 500 !important
+.container-modal
+	padding 12%
+.modal-desistir
+	display table-cell
+	vertical-align middle
+	background-color #bd8e46
+	border-radius 1.2em
+	border 1px solid #000
+	.modal-body
+		padding-top 0.3em
+		background-color #fff
+		margin 1em
+	.btn-modal
+		button
+			display inline-block !important
+			border-radius 0.3em
+			border none
+			width 48%
+			padding 0.2em 0
+
+.modal-vitoria
+	background url("../img/derrota-e-vitoria.png") no-repeat
+	background-origin content-box
+	display table-cell
+	vertical-align middle
+	background url("../img/derrota-e-vitória.png") no-repeat
+	padding-bottom 60%
+	width 51%
+	z-index 1000
+	//padding-bottom 104%
+	//margin-top 1%
+	background-size 100% !important
+	.ajuda
+		margin 0
+		padding 0.3em
+		height 2.3em !important
+		position relative !important
+		box-shadow 0px 3px 12px #000
+		height 2.3em
+		img
+			width 71%
+			margin 0 auto
+	.volta
+		width 2.3em
+		height 2.33em
+		padding 0.3em 0.34em
+		display inline-block
+		background-color #173e28
+		border-radius 50%
+		box-shadow 0px 3px 12px #000
+		img
+			width 93%
+			margin 0 auto
+
+
+.img-vitoria
+	width 43%
+
+.img-derrota
+	width 76% 
+
+.ui-slider
+	.ui-slider-handle
+		width 0.75em !important /* 12/16 */
+		height 0.75em !important /* 12/16 */
+		border-radius 50% !important
+
+.ui-slider-horizontal
+	height 0.125em !important /* 2/16 */
+
+.ui-state-active
+	border-color #fff !important
+	background #fff !important
+	outline 0
+
+.icon-volume
+	width 1.3125em /* 21/16 */
+	height 1.875em /* 30/16 */
+	background-position 42.5% 27% !important
+	background-size 1800% !important
+.icon-musica
+	width 1.5625em /* 25/16 */
+	height 1.5625em /* 25/16 */
+	background-position 52% 30% !important
+	background-size 1750% !important
+.icon-brilho
+	width 1.9em /* 32/16 */
+	height 1.9em /* 32/16 */
+	background-position 64.8% 29% !important
+	background-size 1376% !important
