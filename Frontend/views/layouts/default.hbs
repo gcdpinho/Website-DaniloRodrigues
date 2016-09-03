@@ -24,14 +24,19 @@
   <meta name="description" content="">
 
   <link rel="stylesheet" href="Content/css/style.min.css">
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
+      <script src="Content/js/html5shiv.js"></script>
       <script src="Content/js/respond.min.js"></script>
   <![endif]-->
 </head>
 <body class="layout-padrao">
-    
+  {{>navegation}}
+  
 	{% body %}
 
+  {{>contact}}
   <footer></footer>
 
 	<script src="Content/js/plugins.min.js"></script>
