@@ -1,0 +1,19 @@
+{
+	"title":"Slider",
+	"data":{"title":"Slider"},
+	"items":[
+		{
+			"title":"Lorem ipsom dolor"
+		},
+		{
+			"title":"Lorem ipsom dolor 2"
+		},
+		{
+			"title":"Lorem ipsom dolor 3"
+		},
+		{
+			"title":"Lorem ipsom dolor 4"
+		}
+	]
+
+}
