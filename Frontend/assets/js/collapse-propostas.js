@@ -1,6 +1,6 @@
 (function(){
 	$(".collapsed").on("click", function(){
-		$(".panel-heading").removeClass("bg-grey").children("h4").removeClass("ft-white").parent().children(".sprite").removeClass("icon-top").addClass("icon-bottom");
+		$(".panel-heading").removeClass("bg-grey").find("h4").removeClass("ft-white").parent().children(".sprite").removeClass("icon-top").addClass("icon-bottom");
 		var $selector = $(this);
 		if($selector.attr("aria-expanded") == "true"){ 
 			$selector.find(".sprite").removeClass("icon-top").addClass("icon-bottom");
