@@ -17,9 +17,10 @@ height = $(window).height();
 $('.slider-img').css('height', height);
 
 var changeHeight = function(){
-    if ($(window).height() != height)
+    if ($(window).height() != height){
         height = $(window).height();
         $('.slider-img').css('height', height);
+    }
     setTimeout(changeHeight, 300);
 }
 
