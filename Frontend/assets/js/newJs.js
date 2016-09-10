@@ -13,7 +13,7 @@ nImages = 4
 //setTimeout(changePicture, 4000);
 */
 
-height = $(window).height();
+/*height = $(window).height();
 $('.slider-img').css('height', height);
 
 var changeHeight = function(){
@@ -24,4 +24,4 @@ var changeHeight = function(){
     setTimeout(changeHeight, 300);
 }
 
-changeHeight();
+changeHeight();*/
