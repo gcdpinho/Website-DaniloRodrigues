@@ -1,7 +1,6 @@
 function initMap() {
 	var template = "<div>\
-						<p>Comitê de Campanha<br>\
-							Participe!\
+						<p>Praça Coronel Pedro Osório, 201. Cep: 96015-015.<br>\
 						</p>\
 					</div>";
 
